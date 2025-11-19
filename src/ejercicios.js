@@ -360,7 +360,18 @@ function voltearHorizontal(matriz) {
   // Pista: Puedes usar .reverse() en cada fila
   // o construir manualmente invirtiendo el orden
   
-  return []; // REEMPLAZAR
+  validarMatriz(matriz);
+  const dim = obtenerDimensiones(matriz);
+  const resultado = crearMatrizVacia(dim.filas, dim.columnas);
+
+  // Voltea la imagen de izquierda a derecha
+  for (let i = 0; i < dim.filas; i++) {
+    for (let j = 0; j < dim.columnas; j++) {
+      resultado[i][j] = matriz[i][dim.columnas - 1 - j];
+    }
+  }
+
+  return resultado;
 }
 
 /**
