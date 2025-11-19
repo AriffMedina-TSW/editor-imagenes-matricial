@@ -429,7 +429,18 @@ function rotar90Grados(matriz) {
   // Opción 2: Construir directamente la matriz rotada
   //   nuevoPixel[j][alto - 1 - i] = pixelOriginal[i][j]
   
-  return []; // REEMPLAZAR
+  validarMatriz(matriz);
+  const dim = obtenerDimensiones(matriz);
+
+  const nueva = crearMatrizVacia(dim.columnas, dim.filas);
+
+  for (let i = 0; i < dim.filas; i++) { 
+    for (let j = 0; j < dim.columnas; j++) {
+      nueva[j][dim.filas - 1 - i] = matriz[i][j];  // <- Opción 2
+    }
+  }
+
+  return nueva;
 }
 
 // ============================================
