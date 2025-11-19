@@ -580,7 +580,32 @@ function detectarBordes(matriz, umbral = 50) {
   //    - Comparar con pixel derecho y pixel inferior
   //    - Si diferencia > umbral, marcar como borde
   
-  return []; // REEMPLAZAR
+  validarMatriz(matriz);
+
+  const gris = convertirEscalaGrises(matriz);
+  const dim = obtenerDimensiones(gris);
+
+  const resultado = crearMatrizVacia(dim.filas, dim.columnas);
+
+  for (let i = 0; i < dim.filas; i++) {
+    for (let j = 0; j < dim.columnas; j++) {
+      const centro = gris[i][j].r;
+      let max = 0;
+
+      if (j + 1 < dim.columnas)
+        max = Math.max(max, Math.abs(centro - gris[i][j + 1].r));
+
+      if (i + 1 < dim.filas)
+        max = Math.max(max, Math.abs(centro - gris[i + 1][j].r));
+
+      if (max > umbral)
+        resultado[i][j] = crearPixel(255, 255, 255, 255);
+      else
+        resultado[i][j] = crearPixel(0, 0, 0, 255);
+    }
+  }
+
+  return resultado;
 }
 
 // ============================================
