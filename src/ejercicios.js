@@ -317,7 +317,21 @@ function convertirEscalaGrises(matriz) {
   // 2. Asignar ese valor a los tres canales
   // pixelNuevo = {r: gris, g: gris, b: gris, a: pixel.a}
   
-  return []; // REEMPLAZAR
+  validarMatriz(matriz);
+  const dim = obtenerDimensiones(matriz);
+  const nueva = crearMatrizVacia(dim.filas, dim.columnas);
+
+  // Convierte cada pixel a escala de grises
+  for (let i = 0; i < dim.filas; i++) {
+    for (let j = 0; j < dim.columnas; j++) {
+      const p = matriz[i][j];
+      const gris = Math.round(0.299 * p.r + 0.587 * p.g + 0.114 * p.b);
+
+      nueva[i][j] = crearPixel(gris, gris, gris, p.a);
+    }
+  }
+
+  return nueva;
 }
 
 // ============================================
