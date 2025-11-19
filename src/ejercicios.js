@@ -272,9 +272,26 @@ function ajustarBrillo(matriz, factor) {
  */
 function invertirColores(matriz) {
   // TODO: Implementar inversión de colores
-  
-  return []; // REEMPLAZAR
-}
+  validarMatriz(matriz);//
+  const dim = obtenerDimensiones(matriz);//
+  const resultado = crearMatrizVacia(dim.filas, dim.columnas);//
+
+  // Invierte los colores de toda la imagen//
+  for (let i = 0; i < dim.filas; i++) {//
+    for (let j = 0; j < dim.columnas; j++) {//
+      const p = matriz[i][j];//
+      resultado[i][j] = crearPixel(//
+        255 - p.r,//
+        255 - p.g,//
+        255 - p.b,//
+        p.a//
+      );//
+    }//
+  }//
+//
+  return resultado;//
+} //
+
 
 /**
  * Ejercicio 2.3: Convertir a escala de grises (9 puntos)
