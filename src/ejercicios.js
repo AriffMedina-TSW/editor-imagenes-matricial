@@ -392,7 +392,15 @@ function voltearHorizontal(matriz) {
 function voltearVertical(matriz) {
   // TODO: Implementar volteo vertical
   
-  return []; // REEMPLAZAR
+  validarMatriz(matriz);
+  const dim = obtenerDimensiones(matriz);
+  const resultado = crearMatrizVacia(dim.filas, dim.columnas);
+
+  for (let i = 0; i < dim.filas; i++) {
+    resultado[i] = matriz[dim.filas - 1 - i];
+  }
+
+  return resultado;
 }
 
 /**
