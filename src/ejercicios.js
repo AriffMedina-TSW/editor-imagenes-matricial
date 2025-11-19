@@ -525,7 +525,29 @@ function mezclarImagenes(matriz1, matriz2, factor) {
 function aplicarSepia(matriz) {
   // TODO: Implementar filtro sepia
   
-  return []; // REEMPLAZAR
+  validarMatriz(matriz);
+  const dim = obtenerDimensiones(matriz);
+  const nueva = crearMatrizVacia(dim.filas, dim.columnas);
+
+  for (let i = 0; i < dim.filas; i++) {
+    for (let j = 0; j < dim.columnas; j++) {
+      const p = matriz[i][j];
+
+      // Formula de sepia
+      const r = 0.393 * p.r + 0.769 * p.g + 0.189 * p.b;
+      const g = 0.349 * p.r + 0.686 * p.g + 0.168 * p.b;
+      const b = 0.272 * p.r + 0.534 * p.g + 0.131 * p.b;
+
+      nueva[i][j] = crearPixel(
+        limitarValorColor(r),
+        limitarValorColor(g),
+        limitarValorColor(b),
+        p.a
+      );
+    }
+  }
+
+  return nueva;
 }
 
 /**
